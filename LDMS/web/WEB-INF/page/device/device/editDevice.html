@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../../lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript" src="../../../lib/layui-v2.6.3/layui.js"></script>
+
+<div class="layui-form" lay-filter="editDevice" id="editDevice">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">设备ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="deviceId" id="deviceId" value="" class="layui-input" readonly="true">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">设备名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="deviceName" id="deviceName" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">负责人ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="teacherId" id="teacherId" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">使用状态</label>
+        <div class="layui-input-block">
+            <input type="text" name="state" id="state" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属实验室ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="laboratoryId" id="laboratoryId" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">注册设备时间</label>
+        <div class="layui-input-block">
+            <input type="text" name="createDate" id="createDate" value="" class="layui-input">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

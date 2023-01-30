@@ -1,0 +1,40 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 1000,
+  "data": [
+    {
+      "id": "1",
+      "teacherId": "11111",
+      "name": "老王",
+      "password": "123456",
+      "age": "35",
+      "sex": "男",
+      "college": "信息学院",
+      "phone": "1856914482",
+      "createDate": "2021年12月4号"
+    },
+    {
+      "id": "3",
+      "teacherId": "33333",
+      "name": "老张",
+      "password": "123456",
+      "sex": "女",
+      "college": "数学学院",
+      "age": "29",
+      "phone": "19856917742",
+      "createDate": "2021年12月4号"
+    },
+    {
+      "id": "4",
+      "teacherId": "44444",
+      "name": "老赵",
+      "password": "123456",
+      "age": "26",
+      "sex": "男",
+      "college": "体育学院",
+      "phone": "19856913374",
+      "createDate": "2021年12月4号"
+    }
+  ]
+}

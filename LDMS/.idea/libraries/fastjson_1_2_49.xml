@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="fastjson-1.2.49">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/lib/fastjson-1.2.49.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/lib/jstl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/lib/lombok.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/lib/mysql-connector-java-8.0.26.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/lib/standard.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LDMS-用户注册</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/admin.css" media="all">
+    <link rel="stylesheet" href="css/login.css" media="all">
+</head>
+<body>
+
+
+<div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+    <div class="layadmin-user-login-main">
+
+        <div class="layadmin-user-login-box layadmin-user-login-header">
+            <h2 style="font-weight: bold">欢迎新用户注册</h2>
+        </div>
+
+        <div class="layadmin-user-Login-box layadmin-user-Login-body layui-form" >
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-nickname"></label>
+                <input type="text" name="name" id="LAY-user-login-name"  placeholder="用户ID" class="layui-input">
+                <tip>例：教师ID为001；学生ID为学号。</tip>
+            </div>
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+                <input type="password" name="password" id="LAY-user-login-password" lay-verify="pass" placeholder="密码" class="layui-input">
+                <tip>密码必须6到12位，且不能出现空格</tip>
+            </div>
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-repass"></label>
+                <input type="password" name="repass" id="LAY-user-login-repass" lay-verify="required" placeholder="确认密码" class="layui-input">
+                <tip>请再次输入密码</tip>
+            </div>
+        </div>
+        <form action="" class="layui-form"> <!-- 加上form组件，解决三个单选框隐藏的问题 -->
+            <div class="layui-input-item">
+                <label class="layui-form-label">您的身份：</label>
+                <input type="radio" name="entity" value="教师" title="教师" checked="" >
+                <input type="radio" name="entity" value="学生" title="学生" >
+            </div>
+        </form>
+        <div class="layui-form-item">
+            <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-nickname"></label>
+            <input type="text" name="nickname" id="LAY-user-login-nickname" lay-verify="nickname" placeholder="请输入您的学号或者工号" class="layui-input">
+        </div>
+
+        <div class="layui-form-item">
+            <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-reg-submit" onclick="register()">注 册</button>
+        </div>
+        <div class="layui-trans layui-form-item layadmin-user-login-other">
+            <!-- 向controller层发送请求，实现页面的跳转 -->
+            <a href="LoginServlet" class="layadmin-user-jump-change layadmin-link layui-hide-xs">用已有帐号登入</a>
+            <%--            <a href="login.html" class="layadmin-user-jump-change layadmin-link layui-hide-sm layui-show-xs-inline-block">登入</a>--%>
+        </div>
+    </div>
+</div>
+
+<script src="layui/layui.js"></script>
+<script src="lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    function register() {
+        //1.获取用户的输入
+        var name = $('#LAY-user-login-name').val();
+        var password = $('#LAY-user-login-password').val();
+        var repass = $('#LAY-user-login-repass').val();
+        var id = $('#LAY-user-login-nickname').val();
+        var entity = $('input[name="entity"]:checked').val(); //单选框不能直接通过jequery的#使用获取Id的方法获取值
+        //	alert("用户名："+name+" 密码:"+password+" Id:"+id+" 身份:"+entity);
+        if(password !== repass) {
+            layer.msg('两次密码不相同，请重新输入！！',{icon: 5});
+            //layer.msg('两次输入的密码不同，请重新输入！', {icon: 5});
+        }else {
+            //出现过其他代码都正确，但还没有写过的else代码少半个“）”影响到注册提交事件。并且IDE没有报错。
+            $.ajax({
+                type:'post',
+                url:'CheckRegisterServlet',
+                data:{
+                    'name':name,
+                    'password':password,
+                    'id':id,
+                    'entity':entity
+                },
+                datatype:'text',
+                success:function(res) {
+                    if(res === "success") {
+                        layer.msg('注册成功！',{icon:6});
+                        setTimeout(function () {
+                            window.location.href="LoginServlet"; //注册成功1500ms后跳转到登录页面
+                        },1500)
+                    }else{
+                        layer.msg('注册失败！',{icon:5});
+                    }
+                }
+            })
+        }
+    }
+</script>
+
+<script>
+    layui.use('form', function(){
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功,用于显示layui隐藏的单选框控件如注册时选择身份的控件
+
+        //……
+
+        //如果你的 HTML 是动态生成的，自动渲染就会失效
+        //因此你需要在相应的地方，执行下述方法来进行渲染
+        form.render();
+    });      //结合三个身份选择的form组件，解决单选框隐藏的问题
+</script>
+
+</body>
+</html>
